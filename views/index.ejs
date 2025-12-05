@@ -7,6 +7,7 @@
 
     <title>NewsLinks</title>
   </head>
+
   <body>
     <header>
       <div class="header-content">
@@ -17,14 +18,14 @@
           width="50px"
           height="50px"
         />
-        <form class="search-bar" action="/search" method="get">
+        <form action="/" method="GET" class="barra-pesquisa">
           <input
             type="text"
-            placeholder="Busque"
-            name="p"
-            aria-label="Pesquisar uma informação"
+            name="q"
+            placeholder="Buscar notícias..."
+            required
           />
-          <button type="submit">🔍</button>
+          <button type="submit">Pesquisar</button>
         </form>
         <nav class="main-nav">
           <ul>
@@ -36,63 +37,29 @@
       </div>
     </header>
     <main>
-      <section class="hero-section">
-        <div class="noticiaMaisRecente">
-          <h1>
-            Dia da Consciência Negra: veja as regras para quem trabalha em 20 de
-            novembro
-          </h1>
-          <br></br>
-          <p>
-            Dia 20 de novembro marca a morte de Zumbi dos Palmares. A legislação
-            brasileira determina benefícios para quem vai trabalhar durante o
-            feriado; veja seus direitos.
-          </p>
-          <button><a href="noticia.html" class="submit">Saiba Mais</a></button>
-        </div>
-
-           
-      <!-- INÍCIO DO LOOP: Para cada notícia na lista... -->
-<% noticias.forEach(function(item) { %>
-<article class="card-noticia">
-<!-- Lógica da Imagem: Se não tiver foto na API, usa uma padrão -->
-<img
-src="<%= item.urlToImage || '/img/padrao.jpg' %>"
-alt="Imagem da notícia"
-onerror="this.src='/img/padrao.jpg'"
-/>
-<div class="conteudo">
-<h3><%= item.title %></h3>
-<!-- Descrição (limita caso venha vazio) -->
-<p><%= item.description || 'Sem descrição disponível.' %></p>
-<!-- Link para a notícia original -->
-<a href="<%= item.url %>" target="_blank" class="botao">Ler Completa</a>
-</div>
-</article>
-<% }); %>
-<!-- FIM DO LOOP -->
-        <div class="oneNoticia">
-          <img src="/img/IMG_5496-1024x761.jpg" class="primeira_noticia" />
-          <h1>
-            Novo vazamento na Baía de Guanabara abre caminho para canal de
-            denúncia online
-          </h1>
-          <p>
-            Um novo vazamento de óleo ocorrido na tarde deste domingo, em São
-            Gonçalo (RJ), trouxe à tona a necessidade de um canal participativo
-            de denúncias online para identificar responsáveis por vazamentos de
-            óleo nas baías fluminenses (Guanabara, Sepetiba e da Ilha Grande).
-          </p>
-        </div>
+      <div class="oneNoticia">
+        <!-- INÍCIO DO LOOP: Para cada notícia na lista... -->
+        <% noticias.forEach(function(item) { %>
+        <article class="card-noticia">
+          <!-- Lógica da Imagem: Se não tiver foto na API, usa uma padrão -->
+          <img
+            src="<%= item.urlToImage || '/img/padrao.jpg' %>"
+            alt="Imagem da notícia"
+            onerror="this.src='/img/padrao.jpg'"
+          />
+          <div class="conteudo">
+            <h3><%= item.title %></h3>
+            <!-- Descrição (limita caso venha vazio) -->
+            <p><%= item.description || 'Sem descrição disponível.' %></p>
+            <!-- Link para a notícia original -->
+            <a href="<%= item.url %>" target="_blank" class="botao"
+              >Ler Completa</a
+            >
+          </div>
+        </article>
+        <% }); %>
+        <!-- FIM DO LOOP -->
       </div>
-      </section>
-      <form action="/" method="GET" class="barra-pesquisa">
-<input type="text" name="q" placeholder="Buscar notícias..." required />
-<button type="submit">Pesquisar</button>
-</form>
     </main>
-    <footer> 
-
-    </footer>
   </body>
 </html>
